@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { useNavigate } from "react-router-dom";
 
 const blogPosts = [
   {
@@ -24,9 +26,26 @@ const blogPosts = [
 ];
 
 const BlogPage = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const adminStatus = localStorage.getItem("isAdmin");
+    setIsAdmin(adminStatus === "true");
+  }, []);
+
+  const handleAddNewPost = () => {
+    navigate("/add-post");
+  };
+
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">Our Blog</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Our Blog</h1>
+        {isAdmin && (
+          <Button onClick={handleAddNewPost}>Add New Post</Button>
+        )}
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {blogPosts.map((post) => (
           <Card key={post.id} className="flex flex-col">

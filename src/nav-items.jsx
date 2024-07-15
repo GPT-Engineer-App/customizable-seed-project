@@ -1,7 +1,8 @@
-import { Home, Info, BookOpen } from "lucide-react";
+import { Home, Info, BookOpen, LogIn } from "lucide-react";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
+import AdminLoginPage from "./pages/AdminLoginPage";
 
 export const navItems = [
   {
@@ -21,5 +22,11 @@ export const navItems = [
     to: "/blog",
     icon: <BookOpen className="h-4 w-4" />,
     page: <BlogPage />,
+  },
+  {
+    title: "Admin Login",
+    to: "/admin-login",
+    icon: <LogIn className="h-4 w-4" />,
+    page: <AdminLoginPage />,
   },
 ];
